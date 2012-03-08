@@ -5,6 +5,7 @@ import org.scalatest.matchers.ShouldMatchers
 import org.scalatest.junit.JUnitRunner
 import org.junit.runner.RunWith
 import FunsWithLists._
+import collection.immutable.List
 
 /*
   Points will be deducted for implementations
@@ -21,11 +22,6 @@ class FunsWithListsTests extends FunSuite with ShouldMatchers{
     labels (games) should equal (expected)
   }
 
-  test("should increase all games rating by 10"){
-    val expected = List(Game("Activision", 40), Game("Zenga", 70), Game("Zenga", 20), Game("EA",70), Game("EA",120))
-    increaseCostBy (10, games) should equal (expected)
-  }
-
   /* 1 BONUS POINT : complete this using only higher order functions */
   test("should return the average rating of games belonging to Zenga"){
     averageRatingsOf ("Zenga", games) should equal (35)
@@ -39,6 +35,16 @@ class FunsWithListsTests extends FunSuite with ShouldMatchers{
   /* 1 BONUS POINT : complete this in an imperative style */
   test("should return the total ratings of EA games"){
     totalRatingsOfLabel ("EA", games) should equal (170)
+  }
+
+  test("should increase all games rating by 10"){
+    val expected = List(Game("Activision", 40), Game("Zenga", 70), Game("Zenga", 20), Game("EA",70), Game("EA",120))
+    increaseRatingBy (10, games) should equal (expected)
+  }
+
+  test("should decrease all Zenga games rating by 10"){
+    val expected = List(Game("Activision", 30), Game("Zenga", 50), Game("Zenga", 0), Game("EA",60), Game("EA",110))
+    decreaseRatingBy (10, "Zenga", games) should equal (expected)
   }
 
   test("should create function to find Activision games"){
